@@ -7,7 +7,9 @@ android {
     compileSdk {
         version = release(36)
     }
-
+    buildFeatures{
+        viewBinding=true;
+    }
     defaultConfig {
         applicationId = "com.example.dbwiki"
         minSdk = 24
@@ -34,6 +36,9 @@ android {
 }
 
 dependencies {
+    val navVersion = "2.9.5"
+    implementation("androidx.navigation:navigation-fragment:$navVersion")
+    implementation("androidx.navigation:navigation-ui:$navVersion")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
