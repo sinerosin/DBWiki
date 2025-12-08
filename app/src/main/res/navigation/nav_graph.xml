@@ -8,21 +8,21 @@
     <fragment
         android:id="@+id/charactersFragment"
         android:name="com.example.dbwiki.CharactersFragment"
-        android:label="fragment_characters"
+        android:label="Personajes"
         tools:layout="@layout/fragment_characters" />
     <fragment
         android:id="@+id/afiliacionFragment"
         android:name="com.example.dbwiki.AfiliacionFragment"
-        android:label="fragment_afiliacion"
+        android:label="Afiliacion"
         tools:layout="@layout/fragment_afiliacion" />
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.dbwiki.SearchFragment"
-        android:label="fragment_search"
+        android:label="Buscar"
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.dbwiki.DetailFragment"
-        android:label="fragment_detail"
+        android:label="Detalle"
         tools:layout="@layout/fragment_detail" />
 </navigation>

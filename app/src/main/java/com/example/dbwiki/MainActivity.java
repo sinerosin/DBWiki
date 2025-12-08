@@ -31,9 +31,15 @@ public class MainActivity extends AppCompatActivity {
 
         // 3. Configuramos la AppBar para que el título y el botón de navegación
         // se actualicen automáticamente al navegar entre fragments
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
+        appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.charactersFragment,
+                R.id.afiliacionFragment,
+                R.id.searchFragment
+        ).build();
+
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
+        NavigationUI.setupWithNavController(binding.bottomNavigationView, navController);
     }
     @Override
     public boolean onSupportNavigateUp() {
