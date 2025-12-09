@@ -6,17 +6,17 @@ public class Charactermodel implements Serializable {
     private int id;
     private String name;
     private String ki;
-    private String maxki;
+    private String maxKi;
     private String race;
     private String image;
     private String affiliacion;
 
-    public Charactermodel(int id, String nombre, String imagen, String ki, String maxki, String raza, String afiliacion) {
+    public Charactermodel(int id, String nombre, String imagen, String ki, String maxKi, String raza, String afiliacion) {
         this.id = id;
         this.name = nombre;
         this.image = imagen;
         this.ki = ki;
-        this.maxki = maxki;
+        this.maxKi = maxKi;
         this.race = raza;
         if(afiliacion.equals("Freelancer")|| afiliacion.equals("Army of Frieza")||afiliacion.equals("Villain")){
             this.affiliacion = "Villain";
@@ -48,7 +48,7 @@ public class Charactermodel implements Serializable {
         return ki;
     }
     public String getMaxki() {
-        return maxki;
+        return maxKi;
     }
     public String getRace() {
         return race;

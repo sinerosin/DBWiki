@@ -103,6 +103,12 @@ public class SearchFragment extends Fragment {
     private void mostrarCharacter(Charactermodel charactermodel) {
         binding.tvCharacterName.setText(charactermodel.getNombre());
         binding.tvCharacterId.setText("#" + String.valueOf(charactermodel.getId()));
+        binding.tvCharacterKi.setText(charactermodel.getKi());
+        binding.tvCharacterMaxKi.setText(charactermodel.getMaxki());
+        binding.tvCharacterRace.setText(charactermodel.getRace());
+        Glide.with(this)
+                .load(charactermodel.getImagen())
+                .into(binding.imgCharacter);
     }
 
 
@@ -110,6 +116,11 @@ public class SearchFragment extends Fragment {
     private void limpiarVista() {
         binding.tvCharacterName.setText("");
         binding.tvCharacterId.setText("");
+        binding.tvCharacterKi.setText("");
+        binding.tvCharacterMaxKi.setText("");
+        binding.tvCharacterRace.setText("");
 
+        // Limpiar Imagen
+        binding.imgCharacter.setImageDrawable(null);
     }
 }
