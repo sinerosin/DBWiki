@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/charactersFragment"
-        android:name="com.example.dbwiki.CharactersFragment"
+        android:name="com.example.dbwiki.ui.charactermodel.CharactersFragment"
         android:label="Personajes"
         tools:layout="@layout/fragment_characters" />
     <fragment
         android:id="@+id/afiliacionFragment"
-        android:name="com.example.dbwiki.AfiliacionFragment"
+        android:name="com.example.dbwiki.ui.charactermodel.AfiliacionFragment"
         android:label="Afiliacion"
         tools:layout="@layout/fragment_afiliacion" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.dbwiki.SearchFragment"
+        android:name="com.example.dbwiki.ui.charactermodel.SearchFragment"
         android:label="Buscar"
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.example.dbwiki.DetailFragment"
+        android:name="com.example.dbwiki.ui.detalle.DetailFragment"
         android:label="Detalle"
         tools:layout="@layout/fragment_detail" />
     <fragment

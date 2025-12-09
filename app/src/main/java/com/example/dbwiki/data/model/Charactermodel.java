@@ -1,31 +1,31 @@
-package com.example.dbwiki.model;
+package com.example.dbwiki.data.model;
 
 import java.io.Serializable;
 
-public class Character implements Serializable {
+public class Charactermodel implements Serializable {
     private int id;
-    private String nombre;
+    private String name;
     private String ki;
     private String maxki;
-    private String raza;
-    private String imagen;
-    private String afiliacion;
+    private String race;
+    private String image;
+    private String affiliacion;
 
-    public Character(int id, String nombre, String imagen, String ki, String maxki, String raza, String afiliacion) {
+    public Charactermodel(int id, String nombre, String imagen, String ki, String maxki, String raza, String afiliacion) {
         this.id = id;
-        this.nombre = nombre;
-        this.imagen = imagen;
+        this.name = nombre;
+        this.image = imagen;
         this.ki = ki;
         this.maxki = maxki;
-        this.raza = raza;
+        this.race = raza;
         if(afiliacion.equals("Freelancer")|| afiliacion.equals("Army of Frieza")||afiliacion.equals("Villain")){
-            this.afiliacion = "Villain";
+            this.affiliacion = "Villain";
         }else if(afiliacion.equals("Assistant of Beerus")|| afiliacion.equals("Assistant of Vermoud")||afiliacion.equals("Other")){
-            this.afiliacion = "Other";
+            this.affiliacion = "Other";
         } else if (afiliacion.equals("Pride Troopers")) {
-            this.afiliacion = "Pride Troopers";
+            this.affiliacion = "Pride Troopers";
         }else{
-            this.afiliacion = "Z Fighter";
+            this.affiliacion = "Z Fighter";
         }
     }
     public int getId() {
@@ -35,12 +35,12 @@ public class Character implements Serializable {
         this.id = id;
     }
     public String getNombre() {
-        return nombre;
+        return name;
     }
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.name = nombre;
     }
     public String getImagen() {
-        return imagen;
+        return image;
     }
 }

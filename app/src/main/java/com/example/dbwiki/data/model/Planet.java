@@ -1,4 +1,4 @@
-package com.example.dbwiki.model;
+package com.example.dbwiki.data.model;
 
 import java.io.Serializable;
 

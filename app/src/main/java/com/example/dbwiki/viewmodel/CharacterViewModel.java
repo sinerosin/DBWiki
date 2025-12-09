@@ -1,0 +1,34 @@
+package com.example.dbwiki.viewmodel;
+
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+
+import com.example.dbwiki.data.remote.Resource;
+import com.example.dbwiki.data.repository.CharacterRepository;
+
+public class CharacterViewModel extends ViewModel {
+    private final CharacterRepository repository;
+
+    // LiveData observado por el Fragment.
+    // Contendrá Loading, Success o Error, junto al dato correspondiente.
+    public MutableLiveData<Resource<Character>> informacionCharacter = new MutableLiveData<>();
+
+    public CharacterViewModel() {
+        // Inicializamos el Repository, capa encargada de hablar con la API
+        repository = new CharacterRepository();
+    }
+
+    // Método usado por el Fragment para iniciar una búsqueda
+    public void buscarCharacter(String name) {
+
+        // Realizamos la búsqueda mediante el Repository
+        // y recibimos la respuesta a través del callback
+        repository.getCharacter(name, new CharacterRepository.CharacterCallback() {
+            @Override
+            public void onResult(Resource<Character> result) {
+                // Publicamos el resultado dentro del LiveData
+                informacionCharacter.postValue(result);
+            }
+        });
+    }
+}

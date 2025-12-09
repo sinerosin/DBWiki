@@ -1,4 +1,4 @@
-package com.example.dbwiki;
+package com.example.dbwiki.ui.character;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.dbwiki.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link VillainFragment#newInstance} factory method to
+ * Use the {@link OtherFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class VillainFragment extends Fragment {
+public class OtherFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class VillainFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public VillainFragment() {
+    public OtherFragment() {
         // Required empty public constructor
     }
 
@@ -34,11 +36,11 @@ public class VillainFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment VillainFragment.
+     * @return A new instance of fragment OtherFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static VillainFragment newInstance(String param1, String param2) {
-        VillainFragment fragment = new VillainFragment();
+    public static OtherFragment newInstance(String param1, String param2) {
+        OtherFragment fragment = new OtherFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +61,6 @@ public class VillainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_villain, container, false);
+        return inflater.inflate(R.layout.fragment_other, container, false);
     }
 }

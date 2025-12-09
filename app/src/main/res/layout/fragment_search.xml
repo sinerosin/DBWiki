@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".SearchFragment">
+    tools:context=".ui.charactermodel.SearchFragment">
 
     <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchViewPokemonName"
+        android:id="@+id/searchViewCharacterName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:queryHint="Buscar Pokémon" />
@@ -44,13 +44,13 @@
             android:id="@+id/tvErrorMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pokémon no encontrado"
+            android:text="Personaje no encontrado"
             android:textSize="18sp"
             android:layout_marginTop="12dp"
             android:textStyle="bold" />
     </LinearLayout>
     <ScrollView
-        android:id="@+id/layoutPokemonContent"
+        android:id="@+id/layoutCharacterContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
@@ -63,7 +63,7 @@
 
             <!-- Nombre -->
             <TextView
-                android:id="@+id/tvPokemonName"
+                android:id="@+id/tvCharacterName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
@@ -73,7 +73,7 @@
 
             <!-- ID -->
             <TextView
-                android:id="@+id/tvPokemonId"
+                android:id="@+id/tvCharacterId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"

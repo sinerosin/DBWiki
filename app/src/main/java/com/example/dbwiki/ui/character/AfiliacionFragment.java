@@ -1,4 +1,4 @@
-package com.example.dbwiki;
+package com.example.dbwiki.ui.character;
 
 import android.os.Bundle;
 
