@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide; // Importación necesaria para cargar imágenes
 import com.example.dbwiki.data.model.Charactermodel;
 import com.example.dbwiki.viewmodel.CharacterViewModel;
 import com.example.dbwiki.databinding.FragmentSearchBinding;
@@ -77,7 +78,7 @@ public class SearchFragment extends Fragment {
                     binding.layoutCharacterContent.setVisibility(View.VISIBLE);
                     binding.layoutError.setVisibility(View.GONE);
 
-                    // Cargar datos del pokemon
+                    // Cargar datos del personaje
                     mostrarCharacter(resource.data);
                     break;
 
@@ -97,20 +98,18 @@ public class SearchFragment extends Fragment {
             }
         });
     }
+
+    // Método actualizado para mostrar la información del personaje de DBWiki
     private void mostrarCharacter(Charactermodel charactermodel) {
         binding.tvCharacterName.setText(charactermodel.getNombre());
         binding.tvCharacterId.setText("#" + String.valueOf(charactermodel.getId()));
-
     }
 
+
+    // Método actualizado para limpiar los nuevos campos del layout
     private void limpiarVista() {
         binding.tvCharacterName.setText("");
         binding.tvCharacterId.setText("");
-        binding.tvPokemonHeight.setText("");
-        binding.tvPokemonWeight.setText("");
-        binding.tvPokemonTypes.setText("");
-        binding.imgPokemonNormal.setImageDrawable(null);
-        binding.imgPokemonShiny.setImageDrawable(null);
-    }
 
+    }
 }

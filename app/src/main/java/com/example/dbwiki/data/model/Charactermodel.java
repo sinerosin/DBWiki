@@ -43,4 +43,18 @@ public class Charactermodel implements Serializable {
     public String getImagen() {
         return image;
     }
+
+    public String getKi() {
+        return ki;
+    }
+    public String getMaxki() {
+        return maxki;
+    }
+    public String getRace() {
+        return race;
+    }
+    public String getAffiliacion() {
+        return affiliacion;
+    }
+
 }
