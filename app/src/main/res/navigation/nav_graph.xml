@@ -25,4 +25,9 @@
         android:name="com.example.dbwiki.DetailFragment"
         android:label="Detalle"
         tools:layout="@layout/fragment_detail" />
+    <fragment
+        android:id="@+id/planetFragment"
+        android:name="com.example.dbwiki.PlanetFragment"
+        android:label="fragment_planet"
+        tools:layout="@layout/fragment_planet" />
 </navigation>
