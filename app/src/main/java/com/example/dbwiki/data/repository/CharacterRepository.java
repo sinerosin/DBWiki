@@ -1,12 +1,11 @@
 package com.example.dbwiki.data.repository;
 
 import com.example.dbwiki.data.model.Charactermodel; // Importación asumida (corregida previamente)
-import com.example.dbwiki.data.model.ChararcterResponse;
+import com.example.dbwiki.data.model.CharacterResponse;
 import com.example.dbwiki.data.remote.DbzApi;
 import com.example.dbwiki.data.remote.Resource;
 import com.example.dbwiki.data.remote.RetrofitClient;
 
-import java.util.ArrayList;
 import java.util.List; // Necesitas importar List
 
 import retrofit2.Call;
@@ -28,7 +27,7 @@ public class CharacterRepository {
         void onResult(Resource<Charactermodel> result);
     }
     public interface CharacterListCallback {
-        void onResult(Resource<List<ChararcterResponse.CharacterEntry>> result);
+        void onResult(Resource<List<CharacterResponse.CharacterEntry>> result);
     }
     public void getCharacter(String name, CharacterCallback callback) {
 
@@ -68,12 +67,12 @@ public class CharacterRepository {
         // Avisamos de que empieza la carga
         callback.onResult(Resource.loading());
 
-        api.getCharacterList(CHARACTER_LIMIT, PAGE_NUM).enqueue(new Callback<ChararcterResponse>() {
+        api.getCharacterList(CHARACTER_LIMIT, PAGE_NUM).enqueue(new Callback<CharacterResponse>() {
             @Override
-            public void onResponse(Call<ChararcterResponse> call, Response<ChararcterResponse> response) {
+            public void onResponse(Call<CharacterResponse> call, Response<CharacterResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     // Recuperamos la lista de Pokémon directamente
-                    List<ChararcterResponse.CharacterEntry> lista = response.body().getResults();
+                    List<CharacterResponse.CharacterEntry> lista = response.body().getItems();
                     callback.onResult(Resource.success(lista));
                 } else {
                     callback.onResult(Resource.error("No se pudo cargar la Pokédex"));
@@ -84,7 +83,7 @@ public class CharacterRepository {
             }
 
             @Override
-            public void onFailure(Call<ChararcterResponse> call, Throwable t) {
+            public void onFailure(Call<CharacterResponse> call, Throwable t) {
                 callback.onResult(Resource.error("Error de red: " + t.getMessage()));
             }
         });
