@@ -4,16 +4,10 @@
         android:id="@+id/charactersFragment"
         android:icon="@drawable/goku"
         android:title="Personajes" />
-
     <item
         android:id="@+id/afiliacionFragment"
         android:icon="@drawable/afiliacion"
         android:title="Afiliaciones" />
-    <item
-        android:id="@+id/planetFragment"
-        android:icon="@drawable/planet"
-        android:title="Planetas" />
-
     <item
         android:id="@+id/searchFragment"
         android:icon="@drawable/lupadbz"
