@@ -40,14 +40,13 @@ public class AfiliacionFragment extends Fragment {
             @NonNull
             @Override
             public Fragment createFragment(int position) {
-                // Devuelve el fragment correspondiente a cada pestaña y le pasa la afiliación.
-                // El segundo parámetro (null) es para mantener la firma del método newInstance original.
+                // Devuelve el fragment correspondiente a cada pestaña
                 switch (position) {
                     default:
-                    case 0: return ZfighterFragment.newInstance("Z Fighter", null);
-                    case 1: return VillainFragment.newInstance("Villain", null);
-                    case 2: return TroopersFragment.newInstance("Pride Troopers", null);
-                    case 3: return OtherFragment.newInstance("Other", null);
+                    case 0: return new ZfighterFragment();
+                    case 1: return new VillainFragment();
+                    case 2: return new TroopersFragment();
+                    case 3: return new OtherFragment();
                 }
             }
 

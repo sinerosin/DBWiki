@@ -36,9 +36,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="625dp"
+        android:clipToPadding="false"
         android:padding="8dp"
         android:paddingBottom="64dp"
-        android:clipToPadding="false"
         tools:listitem="@layout/viewholder_character" />
 </LinearLayout>

@@ -9,7 +9,7 @@ public class Charactermodel implements Serializable {
     private String maxKi;
     private String race;
     private String image;
-    private String affiliacion;
+    private String affiliation;
 
     public Charactermodel(int id, String nombre, String imagen, String ki, String maxKi, String raza, String afiliacion) {
         this.id = id;
@@ -19,13 +19,13 @@ public class Charactermodel implements Serializable {
         this.maxKi = maxKi;
         this.race = raza;
         if(afiliacion.equals("Freelancer")|| afiliacion.equals("Army of Frieza")||afiliacion.equals("Villain")){
-            this.affiliacion = "Villain";
+            this.affiliation = "Villain";
         }else if(afiliacion.equals("Assistant of Beerus")|| afiliacion.equals("Assistant of Vermoud")||afiliacion.equals("Other")){
-            this.affiliacion = "Other";
+            this.affiliation = "Other";
         } else if (afiliacion.equals("Pride Troopers")) {
-            this.affiliacion = "Pride Troopers";
+            this.affiliation = "Pride Troopers";
         }else{
-            this.affiliacion = "Z Fighter";
+            this.affiliation = "Z Fighter";
         }
     }
     public int getId() {
@@ -53,8 +53,8 @@ public class Charactermodel implements Serializable {
     public String getRace() {
         return race;
     }
-    public String getAffiliacion() {
-        return affiliacion;
+    public String getAffiliation() {
+        return affiliation;
     }
 
 }

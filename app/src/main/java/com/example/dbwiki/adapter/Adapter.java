@@ -11,16 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dbwiki.R;
 import com.example.dbwiki.data.model.CharacterResponse;
-import com.example.dbwiki.data.model.Charactermodel; // Importar Charactermodel
 import com.example.dbwiki.databinding.ViewholderCharacterBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.CharacterViewHolder> {
-    // Se cambia a Object para admitir Charactermodel y CharacterResponse.CharacterEntry
-    List<Object> characterList;
-    private final LayoutInflater inflater;
+    List<CharacterResponse.CharacterEntry> characterList;     // Lista de animales a mostrar
+    private final LayoutInflater inflater;    // Crea (infla) las vistas desde XML
 
     // Constructor: recibe el contexto y la lista de personajes
     public Adapter(Context context) {
@@ -40,29 +38,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.CharacterViewHolder> {
     // Rellena los datos en el ViewHolder correspondiente a una posición concreta
     @Override
     public void onBindViewHolder(@NonNull CharacterViewHolder holder, int position) {
-        Object item = characterList.get(position);
-
-        String nombreText;
-        String idText;
-        String numeroFormateado;
-
-        if (item instanceof CharacterResponse.CharacterEntry) {
-            // Lógica existente para CharactersFragment (listado paginado)
-            CharacterResponse.CharacterEntry entry = (CharacterResponse.CharacterEntry) item;
-            numeroFormateado = String.format("#%03d", entry.getId());
-            nombreText = entry.getName();
-        } else if (item instanceof Charactermodel) {
-            // Lógica para AffiliationFragments (listado completo)
-            Charactermodel model = (Charactermodel) item;
-            numeroFormateado = String.format("#%03d", model.getId());
-            nombreText = model.getNombre();
-        } else {
-            return;
-        }
-
-        // Respetando la lógica de mapeo original
-        holder.binding.nombre.setText(nombreText);
-        holder.binding.id.setText(numeroFormateado);
+        CharacterResponse.CharacterEntry entry= characterList.get(position);
+        int id = entry.getId();
+        String numeroFormateado = String.format("#%03d", id);
+        // Enlazamos los datos con los elementos del layout
+        holder.binding.nombre.setText(numeroFormateado);
+        holder.binding.id.setText(entry.getName());
     }
 
     // Indica cuántos elementos hay en la lista
@@ -72,19 +53,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.CharacterViewHolder> {
         return characterList !=null ? characterList.size() : 0;
     }
 
-    // Permite actualizar la lista completa desde fuera del adaptador (para listas estáticas, ej: afiliaciones)
-    public void establecerLista(List<?> list) {
-        this.characterList.clear();
-        if (list != null) {
-            this.characterList.addAll(list);
-        }
-        notifyDataSetChanged();
+    // Permite actualizar la lista completa desde fuera del adaptador
+    public void establecerLista(List<CharacterResponse.CharacterEntry> characterList) {
+        this.characterList = characterList;
+        notifyDataSetChanged(); // Notifica al RecyclerView que los datos han cambiado
     }
-
-    // Método original para el listado paginado (CharactersFragment)
     public void addCharacterList(List<CharacterResponse.CharacterEntry> nuevos) {
+        // Guardamos el índice donde empieza la nueva inserción
         if (nuevos == null || nuevos.isEmpty()) {
-            return;
+            return; // Si no hay nada que añadir, salimos del método.
         }
         int inicio = characterList.size();
 
