@@ -16,6 +16,7 @@ import retrofit2.Response;
 public class CharacterRepository {
     private final static  int CHARACTER_LIMIT =29;
     private int PAGE_NUM=1;
+    private boolean isLoading = false; // RE-INCORPORADO para evitar llamadas concurrentes en la paginación
     private boolean hasMorePages = true;
     private List<Charactermodel> fullCharacterList=null;
     private final DbzApi api;
@@ -57,12 +58,17 @@ public class CharacterRepository {
         });
     }
     public void getCharacterList(CharacterListCallback callback) {
+        if (isLoading || !hasMorePages) { // Bloqueamos si ya estamos cargando o no hay más páginas
+            return;
+        }
 
+        isLoading = true; // Marcamos que la carga ha comenzado
         callback.onResult(Resource.loading());
 
         api.getCharacterList(CHARACTER_LIMIT, PAGE_NUM).enqueue(new Callback<CharacterResponse>() {
             @Override
             public void onResponse(Call<CharacterResponse> call, Response<CharacterResponse> response) {
+                isLoading = false; // Marcamos que la carga ha finalizado
                 if (response.isSuccessful() && response.body() != null) {
                     List<CharacterResponse.CharacterEntry> lista = response.body().getItems();
                     if (lista == null || lista.isEmpty()) {
@@ -72,15 +78,15 @@ public class CharacterRepository {
                         return;
                     }
                     callback.onResult(Resource.success(lista));
+                    PAGE_NUM ++;
                 } else {
                     callback.onResult(Resource.error("No se pudo cargar losCharacters"));
                 }
-
-                PAGE_NUM ++;
             }
 
             @Override
             public void onFailure(Call<CharacterResponse> call, Throwable t) {
+                isLoading = false; // Marcamos que la carga ha finalizado (por error)
                 callback.onResult(Resource.error("Error de red: " + t.getMessage()));
             }
         });
