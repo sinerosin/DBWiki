@@ -10,8 +10,10 @@ import retrofit2.http.Query;
 
 public interface DbzApi {
     @GET("Characters")
-    Call<List<Charactermodel>> getCharacterByName(@Query("name") String name); // CORRECCIÓN: Ahora espera una lista
+    Call<List<Charactermodel>> getCharacterByName(@Query("name") String name);
     @GET("Characters")
     Call<CharacterResponse>getCharacterList(@Query("limit")int limit, @Query("page") int page);
+    @GET("Characters")
+    Call<List<Charactermodel>> getAllCharactersWithDetails();
 
 }
