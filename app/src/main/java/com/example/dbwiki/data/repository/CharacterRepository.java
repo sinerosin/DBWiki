@@ -63,7 +63,7 @@ public class CharacterRepository {
             }
         });
     }
-    public void getCharacterList(CharacterCallback callback) {
+    public void getCharacterList(CharacterListCallback callback) {
 
         // Avisamos de que empieza la carga
         callback.onResult(Resource.loading());

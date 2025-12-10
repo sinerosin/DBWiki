@@ -59,6 +59,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.CharacterViewHolder> {
     }
     public void addCharacterList(List<ChararcterResponse.CharacterEntry> nuevos) {
         // Guardamos el índice donde empieza la nueva inserción
+        if (nuevos == null || nuevos.isEmpty()) {
+            return; // Si no hay nada que añadir, salimos del método.
+        }
         int inicio = characterList.size();
 
         // Añadimos al final de la lista los nuevos elementos recibidos
