@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,11 +23,7 @@ import com.example.dbwiki.viewmodel.CharacterViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TroopersFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class TroopersFragment extends Fragment {
 
     private FragmentTroopersBinding binding;
@@ -83,7 +80,7 @@ public class TroopersFragment extends Fragment {
 
 
                     // Solo añadimos los que son "Other"
-                    adapter.addCharacterList(otrosPersonajes);
+                    adapter.establecerLista(otrosPersonajes);
 
                     break;
 
@@ -95,4 +92,5 @@ public class TroopersFragment extends Fragment {
             }
         });
     }
+
 }

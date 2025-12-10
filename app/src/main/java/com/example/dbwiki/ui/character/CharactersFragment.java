@@ -41,7 +41,6 @@ public class CharactersFragment extends Fragment {
 
         configurarRecyclerView();
         observarCharacterList();
-        configurarPaginacion();
 
         // Lanzamos la carga inicial
         viewModel.cargarCharacterList();
@@ -78,26 +77,6 @@ public class CharactersFragment extends Fragment {
                     binding.layoutErrorPokedex.setVisibility(View.VISIBLE);
                     binding.tvErrorPokedex.setText(resource.message);
                     break;
-            }
-        });
-    }
-
-    // OJO: hacer esto solo si tu API tiene paginación
-    private void configurarPaginacion() {
-        // Añadimos un listener al RecyclerView para detectar el scroll
-        binding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-
-                // Comprobamos si el usuario ha llegado al final del RecyclerView.
-                // canScrollVertically(1) devuelve false cuando NO se puede seguir bajando.
-                if (!recyclerView.canScrollVertically(1)) {
-
-                    // Si estamos en el final, pedimos al ViewModel que cargue la siguiente página
-                    viewModel.cargarCharacterList();
-                }
             }
         });
     }

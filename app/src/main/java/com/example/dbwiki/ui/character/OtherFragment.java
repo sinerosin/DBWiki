@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,7 @@ public class OtherFragment extends Fragment {
         configurarRecyclerView();
         observarCharacterList();
 
+
         viewModel.cargarCharacterList();
     }
     private void configurarRecyclerView() {
@@ -68,7 +70,7 @@ public class OtherFragment extends Fragment {
                     List<CharacterResponse.CharacterEntry> otrosPersonajes = new ArrayList<>();
                     for (CharacterResponse.CharacterEntry character : resource.data) {
                         String affiliation = character.getAffiliation(); // ¡Este campo existe en la API!
-                        if (affiliation != null && (affiliation.equalsIgnoreCase("Other")|| affiliation.equalsIgnoreCase("Assistant of Beerus")||affiliation.equalsIgnoreCase("Assistant of Vermoud"))) {
+                        if (affiliation != null && (affiliation.equalsIgnoreCase("Other") || affiliation.equalsIgnoreCase("Assistant of Beerus") || affiliation.equalsIgnoreCase("Assistant of Vermoud"))) {
                             otrosPersonajes.add(character);
                         }
                     }
@@ -77,7 +79,7 @@ public class OtherFragment extends Fragment {
 
 
                     // Solo añadimos los que son "Other"
-                    adapter.addCharacterList(otrosPersonajes);
+                    adapter.establecerLista(otrosPersonajes);
 
                     break;
 
@@ -89,4 +91,5 @@ public class OtherFragment extends Fragment {
             }
         });
     }
-}
+
+    }
