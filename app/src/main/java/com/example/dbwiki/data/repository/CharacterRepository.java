@@ -1,6 +1,7 @@
 package com.example.dbwiki.data.repository;
 
 import com.example.dbwiki.data.model.Charactermodel; // Importación asumida (corregida previamente)
+import com.example.dbwiki.data.model.ChararcterResponse;
 import com.example.dbwiki.data.remote.DbzApi;
 import com.example.dbwiki.data.remote.Resource;
 import com.example.dbwiki.data.remote.RetrofitClient;
@@ -13,6 +14,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CharacterRepository {
+    private final static  int CHARACTER_LIMIT =20;
+    private int PAGE_NUM=0;
     private final DbzApi api;
 
     public CharacterRepository() {
@@ -23,6 +26,9 @@ public class CharacterRepository {
     // Callback propio para enviar el resultado al ViewModel
     public interface CharacterCallback {
         void onResult(Resource<Charactermodel> result);
+    }
+    public interface CharacterListCallback {
+        void onResult(Resource<List<ChararcterResponse.CharacterEntry>> result);
     }
     public void getCharacter(String name, CharacterCallback callback) {
 
@@ -53,6 +59,32 @@ public class CharacterRepository {
             public void onFailure(Call<List<Charactermodel>> call, Throwable t) {
 
                 // Fallo de red, sin respuesta de la API
+                callback.onResult(Resource.error("Error de red: " + t.getMessage()));
+            }
+        });
+    }
+    public void getCharacterList(CharacterCallback callback) {
+
+        // Avisamos de que empieza la carga
+        callback.onResult(Resource.loading());
+
+        api.getCharacterList(CHARACTER_LIMIT, PAGE_NUM).enqueue(new Callback<ChararcterResponse>() {
+            @Override
+            public void onResponse(Call<ChararcterResponse> call, Response<ChararcterResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    // Recuperamos la lista de Pokémon directamente
+                    List<ChararcterResponse.CharacterEntry> lista = response.body().getResults();
+                    callback.onResult(Resource.success(lista));
+                } else {
+                    callback.onResult(Resource.error("No se pudo cargar la Pokédex"));
+                }
+
+                // Incrementamos el offset
+                PAGE_NUM += CHARACTER_LIMIT;
+            }
+
+            @Override
+            public void onFailure(Call<ChararcterResponse> call, Throwable t) {
                 callback.onResult(Resource.error("Error de red: " + t.getMessage()));
             }
         });

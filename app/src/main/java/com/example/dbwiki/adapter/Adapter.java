@@ -9,19 +9,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dbwiki.R;
+import com.example.dbwiki.data.model.ChararcterResponse;
 import com.example.dbwiki.databinding.ViewholderCharacterBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.CharacterViewHolder> {
-    private List<Character> personajes;            // Lista de animales a mostrar
+    List<ChararcterResponse.CharacterEntry> characterList;     // Lista de animales a mostrar
     private final LayoutInflater inflater;    // Crea (infla) las vistas desde XML
 
     // Constructor: recibe el contexto y la lista de personajes
-    public Adapter(Context context, List<Character> personajes) {
-        this.personajes = personajes;
+    public Adapter(Context context) {
         this.inflater = LayoutInflater.from(context);
+        this.characterList = new ArrayList<>();
     }
 
     // Crea un nuevo ViewHolder cuando el RecyclerView lo necesita
@@ -36,23 +37,36 @@ public class Adapter extends RecyclerView.Adapter<Adapter.CharacterViewHolder> {
     // Rellena los datos en el ViewHolder correspondiente a una posición concreta
     @Override
     public void onBindViewHolder(@NonNull CharacterViewHolder holder, int position) {
-        Character personaje = personajes.get(position);
-
+        ChararcterResponse.CharacterEntry entry= characterList.get(position);
+        int id = entry.getIdFromUrl();
+        String numeroFormateado = String.format("#%03d", id);
         // Enlazamos los datos con los elementos del layout
-       //holder.binding.tvNombre.setText(personaje.getNombre());
-        //holder.binding.ivAnimal.setImageResource(personaje.getImagen());
+       holder.binding.nombre.setText(numeroFormateado);
+       holder.binding.id.setText(entry.getName());
     }
 
     // Indica cuántos elementos hay en la lista
     @Override
     public int getItemCount() {
-        return personajes != null ? personajes.size() : 0;
+
+        return characterList !=null ? characterList.size() : 0;
     }
 
     // Permite actualizar la lista completa desde fuera del adaptador
-    public void establecerLista(List<Character> personajes) {
-        this.personajes = personajes;
+    public void establecerLista(List<ChararcterResponse.CharacterEntry> characterList) {
+        this.characterList = characterList;
         notifyDataSetChanged(); // Notifica al RecyclerView que los datos han cambiado
+    }
+    public void addCharacterList(List<ChararcterResponse.CharacterEntry> nuevos) {
+        // Guardamos el índice donde empieza la nueva inserción
+        int inicio = characterList.size();
+
+        // Añadimos al final de la lista los nuevos elementos recibidos
+        this.characterList.addAll(nuevos);
+
+        // Notificamos al RecyclerView que hemos insertado un rango de elementos,
+        // para que solo actualice esa parte y no toda la lista (más eficiente).
+        notifyItemRangeInserted(inicio, nuevos.size());
     }
 
     // Clase interna ViewHolder que representa un solo elemento con ViewBinding

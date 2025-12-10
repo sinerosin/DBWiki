@@ -4,8 +4,11 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.dbwiki.data.model.Charactermodel; // Importar Charactermodel
+import com.example.dbwiki.data.model.ChararcterResponse;
 import com.example.dbwiki.data.remote.Resource;
 import com.example.dbwiki.data.repository.CharacterRepository;
+
+import java.util.List;
 
 public class CharacterViewModel extends ViewModel {
     private final CharacterRepository repository;
@@ -13,7 +16,7 @@ public class CharacterViewModel extends ViewModel {
     // LiveData observado por el Fragment.
     // Contendrá Loading, Success o Error, junto al dato correspondiente.
     public MutableLiveData<Resource<Charactermodel>> informacionCharacter = new MutableLiveData<>();
-
+    public MutableLiveData<Resource<List<ChararcterResponse.CharacterEntry>>> characterList= new MutableLiveData<>();
     public CharacterViewModel() {
         // Inicializamos el Repository, capa encargada de hablar con la API
         repository = new CharacterRepository();
@@ -31,5 +34,11 @@ public class CharacterViewModel extends ViewModel {
                 informacionCharacter.postValue(result);
             }
         });
+    }
+    public void cargarCharacterList() {
+        // Lanzamos la petición
+        repository.getCharacterList(result ->{
+                    characterList.postValue(result);
+                });
     }
 }
