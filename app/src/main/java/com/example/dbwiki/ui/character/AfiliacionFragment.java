@@ -29,10 +29,8 @@ public class AfiliacionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // 1️⃣ Configuramos el adaptador que define qué fragment se muestra en cada pestaña
         establecerAdaptadorViewPager();
 
-        // 2️⃣ Vinculamos el TabLayout con el ViewPager2 para sincronizar ambos componentes
         vincularTabLayoutConViewPager();
     }
     private void establecerAdaptadorViewPager() {
@@ -40,7 +38,6 @@ public class AfiliacionFragment extends Fragment {
             @NonNull
             @Override
             public Fragment createFragment(int position) {
-                // Devuelve el fragment correspondiente a cada pestaña
                 switch (position) {
                     default:
                     case 0: return new ZfighterFragment();
@@ -52,7 +49,6 @@ public class AfiliacionFragment extends Fragment {
 
             @Override
             public int getItemCount() {
-                // Número total de pestañas
                 return 4;
             }
         });

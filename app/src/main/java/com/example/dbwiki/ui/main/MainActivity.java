@@ -20,14 +20,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView((binding = ActivityMainBinding.inflate(getLayoutInflater())).getRoot());
 
-        // 1. Obtenemos la referencia de la Toolbar del layout
         setSupportActionBar(binding.toolbar);
 
-        // 2. Obtenemos el NavController desde el contenedor del grafo
         navController = ((NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment)).getNavController();
 
-        // 3. Configuramos la AppBar para que el título y el botón de navegación
-        // se actualicen automáticamente al navegar entre fragments
         appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.charactersFragment,
                 R.id.afiliacionFragment,

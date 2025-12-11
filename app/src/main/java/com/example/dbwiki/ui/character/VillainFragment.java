@@ -24,11 +24,7 @@ import com.example.dbwiki.viewmodel.CharacterViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link VillainFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class VillainFragment extends Fragment {
     private FragmentVillainBinding binding;
 
@@ -71,7 +67,6 @@ public class VillainFragment extends Fragment {
                         return;
                     }
 
-                    // FILTRAMOS solo los personajes con affiliation = "Other"
                     List<CharacterResponse.CharacterEntry> otrosPersonajes = new ArrayList<>();
                     for (CharacterResponse.CharacterEntry character : resource.data) {
                         String affiliation = character.getAffiliation(); // ¡Este campo existe en la API!
@@ -83,7 +78,6 @@ public class VillainFragment extends Fragment {
                     binding.recyclerView.setVisibility(View.VISIBLE);
 
 
-                    // Solo añadimos los que son "Other"
                     adapter.establecerLista(otrosPersonajes);
 
                     break;

@@ -42,7 +42,6 @@ public class CharactersFragment extends Fragment {
         configurarRecyclerView();
         observarCharacterList();
 
-        // Lanzamos la carga inicial
         viewModel.cargarCharacterList();
     }
     private void configurarRecyclerView() {
@@ -54,7 +53,6 @@ public class CharactersFragment extends Fragment {
         viewModel.characterList.observe(getViewLifecycleOwner(), resource -> {
             if (resource == null) return;
 
-            // Gestionamos los diferentes estados
             switch (resource.status) {
                 case LOADING:
                     binding.progressLoading.setVisibility(View.VISIBLE);
@@ -67,7 +65,6 @@ public class CharactersFragment extends Fragment {
                     binding.layoutError.setVisibility(View.GONE);
                     binding.recyclerView.setVisibility(View.VISIBLE);
 
-                    // Añadimos a la lista del RecyclerView los 20 nuevos Pokémon recibidos
                     adapter.addCharacterList(resource.data);
                     break;
 

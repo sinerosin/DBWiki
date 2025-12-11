@@ -40,7 +40,6 @@ public class DetailFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         if (personaje != null) {
-            // Mostramos los datos del animal en la interfaz
             binding.tvCharacterName.setText(personaje.getNombre());
             binding.tvCharacterMaxKi.setText(personaje.getMaxki());
             binding.tvCharacterKi.setText(personaje.getKi());
@@ -50,7 +49,6 @@ public class DetailFragment extends Fragment {
                     .load(personaje.getImagen())
                     .into(binding.imgCharacter);
         } else {
-            // En caso de error, podríamos volver atrás o mostrar un mensaje
             Toast.makeText(requireContext(), "No se pudo cargar el detalle del personaje", Toast.LENGTH_SHORT).show();
             requireActivity().onBackPressed();
         }

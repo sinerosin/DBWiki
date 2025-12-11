@@ -66,7 +66,6 @@ public class ZfighterFragment extends Fragment {
                         return;
                     }
 
-                    // FILTRAMOS solo los personajes con affiliation = "Other"
                     List<CharacterResponse.CharacterEntry> otrosPersonajes = new ArrayList<>();
                     for (CharacterResponse.CharacterEntry character : resource.data) {
                         String affiliation = character.getAffiliation(); // ¡Este campo existe en la API!
@@ -78,7 +77,6 @@ public class ZfighterFragment extends Fragment {
                     binding.recyclerView.setVisibility(View.VISIBLE);
 
 
-                    // Solo añadimos los que son "Other"
                     adapter.establecerLista(otrosPersonajes);
 
                     break;

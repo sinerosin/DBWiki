@@ -24,8 +24,8 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return (binding = FragmentSearchBinding.inflate(inflater, container, false)).getRoot();
+
     }
 
     @Override
@@ -61,39 +61,31 @@ public class SearchFragment extends Fragment {
             switch (resource.status) {
 
                 case LOADING:
-                    // Mostrar spinner
                     binding.progressLoading.setVisibility(View.VISIBLE);
 
-                    // Ocultar el contenido y el error
                     binding.layoutCharacterContent.setVisibility(View.GONE);
                     binding.layoutError.setVisibility(View.GONE);
                     break;
 
 
                 case SUCCESS:
-                    // Ocultar spinner
                     binding.progressLoading.setVisibility(View.GONE);
                     binding.imageView2.setVisibility(View.GONE);
 
-                    // Mostrar contenido
                     binding.layoutCharacterContent.setVisibility(View.VISIBLE);
                     binding.layoutError.setVisibility(View.GONE);
 
-                    // Cargar datos del personaje
                     mostrarCharacter(resource.data);
                     break;
 
 
                 case ERROR:
-                    // Ocultar spinner y contenido
                     binding.progressLoading.setVisibility(View.GONE);
                     binding.layoutCharacterContent.setVisibility(View.GONE);
 
-                    // Mostrar layout de error
                     binding.layoutError.setVisibility(View.VISIBLE);
                     binding.tvErrorMessage.setText(resource.message);
 
-                    // Opcional: limpiar datos previos
                     limpiarVista();
                     break;
             }
@@ -118,7 +110,6 @@ public class SearchFragment extends Fragment {
         binding.tvCharacterMaxKi.setText("");
         binding.tvCharacterRace.setText("");
 
-        // Limpiar Imagen
         binding.imgCharacter.setImageDrawable(null);
     }
 }
