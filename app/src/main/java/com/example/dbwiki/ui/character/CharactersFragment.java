@@ -48,7 +48,7 @@ public class CharactersFragment extends Fragment {
     private void configurarRecyclerView() {
         adapter = new Adapter(requireContext());
         binding.recyclerView.setAdapter(adapter);
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
     }
     private void observarCharacterList() {
         viewModel.characterList.observe(getViewLifecycleOwner(), resource -> {
@@ -57,14 +57,14 @@ public class CharactersFragment extends Fragment {
             // Gestionamos los diferentes estados
             switch (resource.status) {
                 case LOADING:
-                    binding.progressLoadingPokedex.setVisibility(View.VISIBLE);
-                    binding.layoutErrorPokedex.setVisibility(View.GONE);
+                    binding.progressLoading.setVisibility(View.VISIBLE);
+                    binding.layoutError.setVisibility(View.GONE);
                     binding.recyclerView.setVisibility(View.VISIBLE);
                     break;
 
                 case SUCCESS:
-                    binding.progressLoadingPokedex.setVisibility(View.GONE);
-                    binding.layoutErrorPokedex.setVisibility(View.GONE);
+                    binding.progressLoading.setVisibility(View.GONE);
+                    binding.layoutError.setVisibility(View.GONE);
                     binding.recyclerView.setVisibility(View.VISIBLE);
 
                     // Añadimos a la lista del RecyclerView los 20 nuevos Pokémon recibidos
@@ -72,10 +72,10 @@ public class CharactersFragment extends Fragment {
                     break;
 
                 case ERROR:
-                    binding.progressLoadingPokedex.setVisibility(View.GONE);
+                    binding.progressLoading.setVisibility(View.GONE);
                     binding.recyclerView.setVisibility(View.GONE);
-                    binding.layoutErrorPokedex.setVisibility(View.VISIBLE);
-                    binding.tvErrorPokedex.setText(resource.message);
+                    binding.layoutError.setVisibility(View.VISIBLE);
+                    binding.tvError.setText(resource.message);
                     break;
             }
         });

@@ -73,6 +73,7 @@ public class SearchFragment extends Fragment {
                 case SUCCESS:
                     // Ocultar spinner
                     binding.progressLoading.setVisibility(View.GONE);
+                    binding.imageView2.setVisibility(View.GONE);
 
                     // Mostrar contenido
                     binding.layoutCharacterContent.setVisibility(View.VISIBLE);
@@ -98,8 +99,6 @@ public class SearchFragment extends Fragment {
             }
         });
     }
-
-    // Método actualizado para mostrar la información del personaje de DBWiki
     private void mostrarCharacter(Charactermodel charactermodel) {
         binding.tvCharacterName.setText(charactermodel.getNombre());
         binding.tvCharacterId.setText("#" + String.valueOf(charactermodel.getId()));
@@ -112,7 +111,6 @@ public class SearchFragment extends Fragment {
     }
 
 
-    // Método actualizado para limpiar los nuevos campos del layout
     private void limpiarVista() {
         binding.tvCharacterName.setText("");
         binding.tvCharacterId.setText("");

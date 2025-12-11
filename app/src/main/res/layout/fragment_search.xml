@@ -146,4 +146,11 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
     </ScrollView>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="391dp"
+        android:layout_height="451dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/radar" />
 </LinearLayout>

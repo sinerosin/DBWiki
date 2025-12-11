@@ -7,16 +7,15 @@
     android:layout_height="match_parent">
 
     <ProgressBar
-        android:id="@+id/progressLoadingPokedex"
+        android:id="@+id/progressLoading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
         android:visibility="gone"/>
 
-    <!-- ❌ ERROR -->
     <LinearLayout
-        android:id="@+id/layoutErrorPokedex"
+        android:id="@+id/layoutError"
         android:orientation="vertical"
         android:gravity="center"
         android:layout_width="match_parent"
@@ -25,10 +24,10 @@
         android:visibility="gone">
 
         <TextView
-            android:id="@+id/tvErrorPokedex"
+            android:id="@+id/tvError"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No se pudo cargar la Pokédex"
+            android:text="No se pudo cargar la lista"
             android:textStyle="bold"
             android:textSize="18sp"/>
     </LinearLayout>
@@ -40,5 +39,9 @@
         android:clipToPadding="false"
         android:padding="8dp"
         android:paddingBottom="64dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:listitem="@layout/viewholder_character" />
 </LinearLayout>

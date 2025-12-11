@@ -10,7 +10,10 @@ public class CharacterResponse {
     public class CharacterEntry {
         private int id;
         private String name;
-        // URL al detalle del Pokémon
+        private String ki;
+        private String maxKi;
+        private String race;
+        private String image;
         private String affiliation;
 
         public String getName() {
@@ -23,7 +26,17 @@ public class CharacterResponse {
         public String getAffiliation(){
             return affiliation;
         }
+        public String getKi(){
+            return ki;
+        }
+        public String getMaxKi(){
+            return maxKi;
+        }
+        public String getRace(){
+            return race;
+        }
+        public String getImage(){
+            return image;
+        }
     }
-
-        // (Opcional) método de ayuda para obtener el id desde la URL
     }
